@@ -4,4 +4,4 @@ help:
 
 .PHONY: clone
 clone: ## Clone all repos
-	./clone_repos
+	./scripts/clone_repos.sh
