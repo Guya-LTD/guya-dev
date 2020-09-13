@@ -14,7 +14,8 @@
     "storybook": "npm run storybook --prefix storybook/",
     "xpress-web": "yarn start --prefix xpress-web/",
     "xtrack": "yarn start:watch --prefix xtrack/",
-    "start": "concurrently --kill-others \"npm run admin-panel\" \"npm run bits\" \"npm run chat\" \"npm run dymo\" \"npm run gcss\" \"npm run gxdriver\" \"npm run shop-web\" \"npm run storybook\" \"npm run xpress-web\" \"npm run xtrack\" "
+    "start:all": "concurrently --kill-others \"npm run admin-panel\" \"npm run bits\" \"npm run chat\" \"npm run dymo\" \"npm run gcss\" \"npm run gxdriver\" \"npm run shop-web\" \"npm run storybook\" \"npm run xpress-web\" \"npm run xtrack\" ",
+    "start": "concurrently --kill-others \"npm run bits\" \"npm run gcss\" \"npm run gxdriver\" \"npm run storybook\" "
   },
   "repository": {
     "type": "git",
