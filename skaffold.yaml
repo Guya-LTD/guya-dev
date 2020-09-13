@@ -1,0 +1,42 @@
+# version of the configuration.
+apiVersion: skaffold/v2beta7
+
+kind: Config
+
+# holds additional information about the config.
+metadata:
+  	# an identifier for the project.
+  name: guya-dev
+
+# describes how images are built.
+build:
+  # the images you're going to be building.
+  artifacts:
+  # name of the image to be built.
+  - image: guyaltd/user-dev
+    # directory containing the artifact's sources.
+    context: user
+    # `beta` describes an artifact built from a Dockerfile.
+    docker:
+      # locates the Dockerfile relative to workspace.
+      dockerfile: Dockerfile
+    # `beta` local files synced to pods instead of triggering an image build when modified. If no files are listed, sync all the files and infer the destination.
+    sync: infer: ["**/*"]
+
+# describes how images are deployed.
+deploy:
+  # `beta` uses the kustomize CLI to "patch" a deployment for a target environment.
+  kustomize:
+    # path to Kustomization files.
+    paths:
+    - guya/user/overlays/development
+
+# `beta` can override be used to build, test or deploy configuration.
+profiles:
+# a unique profile name.
+- name: production
+  deploy:
+
+# a unique profile name.
+- name: staging
+  deploy:
