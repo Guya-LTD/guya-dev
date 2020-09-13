@@ -13,7 +13,7 @@ git clone https://github.com/Guya-LTD/gxdriver.git
 git clone https://github.com/Guya-LTD/user.git
 
 # Software requirement specfication
-git clone https://github.com/Guya-LTD/srs.git
+#git clone https://github.com/Guya-LTD/srs.git
 
 # Gatekeeper Service
 git clone https://github.com/Guya-LTD/gatekeeper.git

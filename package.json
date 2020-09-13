@@ -1,0 +1,29 @@
+{
+  "name": "guya-dev",
+  "version": "1.0.0",
+  "description": "Dev Env",
+  "main": "index.js",
+  "scripts": {
+    "admin-panel": "npm start --prefix admin-panel/",
+    "bits": "npm start --prefix bits/",
+    "chat": "npm start:watch --prefix chat/",
+    "dymo": "npm dev --prefix dymo/",
+    "gcss": "npm watch --prefix gcss/",
+    "gxdriver": "yarn start --prefix gxdriver/",
+    "shop-web": "yarn start --prefix shop-web/",
+    "storybook": "npm run storybook --prefix storybook/",
+    "xpress-web": "yarn start --prefix xpress-web/",
+    "xtrack": "yarn start:watch --prefix xtrack/",
+    "start": "concurrently --kill-others \"npm run admin-panel\" \"npm run bits\" \"npm run chat\" \"npm run dymo\" \"npm run gcss\" \"npm run gxdriver\" \"npm run shop-web\" \"npm run storybook\" \"npm run xpress-web\" \"npm run xtrack\" "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Guya-LTD/guya-dev.git"
+  },
+  "author": "Simon Belete <simonbelete@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Guya-LTD/guya-dev/issues"
+  },
+  "homepage": "https://github.com/Guya-LTD/guya-dev#readme"
+}
