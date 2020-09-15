@@ -5,3 +5,7 @@ help:
 .PHONY: clone
 clone: ## Clone all repos
 	./scripts/clone_repos.sh
+
+.PHONY: create-k3d-cluster
+create-k3d-cluster: ## Dev cluster
+	./scripts/k3d-create-cluster.sh

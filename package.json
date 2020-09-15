@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "admin-panel": "yarn start --prefix admin-panel/",
-    "bits": "npm start --prefix bits/",
+    "bits": "yarn start --prefix bits/",
     "chat": "npm start:watch --prefix chat/",
     "dymo": "npm dev --prefix dymo/",
     "gcss": "npm watch --prefix gcss/",
