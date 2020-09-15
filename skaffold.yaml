@@ -30,6 +30,22 @@ build:
         dest: .
 
   # name of the image to be built.
+  - image: guyaltd/branch
+    # directory containing the artifact's sources.
+    context: branch
+    # `beta` describes an artifact built from a Dockerfile.
+    docker:
+      # locates the Dockerfile relative to workspace.
+      dockerfile: Dockerfile
+    # `beta` local files synced to pods instead of triggering an image build when modified. If no files are listed, sync all the files and infer the destination.
+    sync:
+      manual:
+      # Sync all the javascript files that are in the src folder
+      # with the container src folder
+      - src: '**/*.py'
+        dest: .
+
+  # name of the image to be built.
   #- image: guyaltd/user
     # directory containing the artifact's sources.
   #  context: user
@@ -51,6 +67,7 @@ deploy:
   kustomize:
     # path to Kustomization files.
     paths:
+    - guya/branch/overlays/development
     - guya/admin-panel/overlays/development
     #- guya/user/overlays/development
 
