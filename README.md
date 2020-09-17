@@ -13,3 +13,21 @@ Guya E-commerce &amp; Guya Express Microservice Development Environment
   - install e.g. via `wget -q -O - https://raw.githubusercontent.com/rancher/k3d/main/install.sh | TAG=v3.0.0-rc.7 bash`
   
 - k3d in Rancher Meetup May 2020: https://youtu.be/hMr3prm9gDM?t=2103 (with old version, using the old syntax!)
+
+## Usage
+```
+$ export VERSION=dev
+```
+
+Build for first time inorder for skaffold to use cache
+```
+
+$ skaffold build
+
+```
+
+```
+
+$ skaffold dev --no-prune=false --cache-artifacts=false
+
+```
