@@ -85,3 +85,51 @@ profiles:
 # a unique profile name.
 - name: staging
   deploy:
+
+----
+
+apiVersion: skaffold/v2beta7
+kind: Config
+metadata:
+  name: guya-dev
+build:
+  artifacts:
+  #- image: guyaltd/admin-panel
+  #  context: admin-panel
+  - image: guyaltd/branch
+    context: branch
+    docker:
+      target: development
+    sync:
+      manual:
+      - src: '**/*.py'
+        dest: "."
+  #- image: guyaltd/shop-web
+  #  context: catalog
+  #- image: rancher/local-path-provisioner
+  #  context: dymo
+deploy:
+  kustomize:
+    paths:
+    - guya
+profiles:
+- name: base
+  deploy:
+    kustomize:
+      paths:
+      - guya/branch/base
+- name: development
+  deploy:
+    kustomize:
+      paths:
+      - guya/branch/overlays/development
+- name: production
+  deploy:
+    kustomize:
+      paths:
+      - guya/branch/overlays/production
+- name: staging
+  deploy:
+    kustomize:
+      paths:
+      - guya/branch/overlays/staging

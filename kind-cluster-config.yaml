@@ -1,0 +1,34 @@
+# three node (two workers) cluster config
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+  #kubeadmConfigPatches:
+  #- |
+  #  kind: InitConfiguration
+  #  nodeRegistration:
+  #    kubeletExtraArgs:
+  #      node-labels: "ingress-ready=true"
+  extraPortMappings:
+  - containerPort: 80
+    hostPort: 8000
+    protocol: TCP  
+  - containerPort: 443
+    #hostPort: 443
+    hostPort: 4433
+    protocol: TCP
+  # Admin web
+  - containerPort: 30001
+    hostPort: 3000
+    protocol: TCP
+  # Shop web
+  - containerPort: 30002
+    hostPort: 4000
+    protocol: TCP
+  # Xpress web
+  - containerPort: 30003
+    hostPort: 5000
+    protocol: TCP
+
+# uncomment below for creating workder node
+# - role: worker

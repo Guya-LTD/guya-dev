@@ -9,3 +9,19 @@ clone: ## Clone all repos
 .PHONY: create-k3d-cluster
 create-k3d-cluster: ## Dev cluster
 	./scripts/k3d-create-cluster.sh
+
+.PHONE: create-kind-cluster
+create-kind-cluster: ## Create Kind cluster
+	kind create cluster --name kind-guya-ltd-cluster --config kind-cluster-config.yaml
+
+.PHONY: init-kind-ingress
+init-kind-ingress: ## Create Nginx Ingress Controlelr and attach services
+	kubectl apply -f kind-ingress-nginx.yaml
+	kubectl wait --namespace ingress-nginx \
+  	--for=condition=ready pod \
+  	--selector=app.kubernetes.io/component=controller \
+  	--timeout=90s
+	kubectl create -f ingress.yaml
+
+.PHONY: init-kind
+init-kind: create-kind-cluster init-kind-ingress ## Kind Cluster with nginx cluster

@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: guya-ltd-ingress
+  namespace: guya-ltd
+spec:
+  rules:
+  - host: a
+    http:
+      paths:
+      - path:
+        backend:
+          serviceName: admin-panel
+          servicePort: 3000
+  
+  - host: b
+    http:
+      paths:
+      - path:
+        backend:
+          serviceName: xpress-web
+          servicePort: 3000
