@@ -33,6 +33,7 @@ build:
       # locates the Dockerfile relative to workspace.
       dockerfile: Dockerfile
       target: development
+      cacheFrom: guyaltd/admin-panel:dev
     # `beta` local files synced to pods instead of triggering an image build when modified. If no files are listed, sync all the files and infer the destination.
     sync:
       manual:
@@ -41,6 +42,73 @@ build:
       - src: 'src/**/*.js'
         dest: .
 
+  # name of the image to be built.
+  - image: guyaltd/shop-web
+    # directory containing the artifact's sources.
+    context: shop-web
+    # `beta` describes an artifact built from a Dockerfile.
+    docker:
+      # locates the Dockerfile relative to workspace.
+      dockerfile: Dockerfile
+      target: development
+      cacheFrom: guyaltd/shop-web:dev
+    # `beta` local files synced to pods instead of triggering an image build when modified. If no files are listed, sync all the files and infer the destination.
+    sync:
+      manual:
+      # Sync all the javascript files that are in the src folder
+      # with the container src folder
+      - src: '**/*.js'
+        dest: .
+
+  # name of the image to be built.
+  - image: guyaltd/xpress-web
+    # directory containing the artifact's sources.
+    context: xpress-web
+    # `beta` describes an artifact built from a Dockerfile.
+    docker:
+      # locates the Dockerfile relative to workspace.
+      dockerfile: Dockerfile
+      target: development
+      cacheFrom: guyaltd/xpress-web:dev
+    # `beta` local files synced to pods instead of triggering an image build when modified. If no files are listed, sync all the files and infer the destination.
+    sync:
+      manual:
+      # Sync all the javascript files that are in the src folder
+      # with the container src folder
+      - src: '**/*.js'
+        dest: .
+
+  # name of the image to be built.
+  - image: guyaltd/branch
+    # directory containing the artifact's sources.
+    context: branch
+    # `beta` describes an artifact built from a Dockerfile.
+    docker:
+      # locates the Dockerfile relative to workspace.
+      dockerfile: Dockerfile
+      target: development
+      cacheFrom: guyaltd/branch:dev
+    # `beta` local files synced to pods instead of triggering an image build when modified. If no files are listed, sync all the files and infer the destination.
+    sync:
+      manual:
+      - src: '**/*.py'
+        dest: "."
+
+  # name of the image to be built.
+  #- image: guyaltd/user
+    # directory containing the artifact's sources.
+  #  context: user
+    # `beta` describes an artifact built from a Dockerfile.
+  #  docker:
+      # locates the Dockerfile relative to workspace.
+  #    dockerfile: Dockerfile
+    # `beta` local files synced to pods instead of triggering an image build when modified. If no files are listed, sync all the files and infer the destination.
+  #  sync:
+  #    manual:
+      # Sync all the javascript files that are in the src folder
+      # with the container src folder
+  #    - src: 'src/**/*.js'
+  #      dest: .
   
 # describes how images are deployed.
 deploy:
@@ -49,7 +117,9 @@ deploy:
     # path to Kustomization files.
     paths:
     - guya/admin-panel/overlays/development
-    #- guya/user/overlays/development
+    - guya/shop-web/overlays/development
+    - guya/xpress-web/overlays/development
+    - guya/branch/overlays/development
 
 # `beta` can override be used to build, test or deploy configuration.
 profiles:
