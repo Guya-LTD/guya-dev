@@ -3,18 +3,50 @@ kind: Config
 metadata:
   name: guya-dev
 build:
+  local: 
+    concurrency: 0
   artifacts:
   - image: guyaltd/admin-panel 
     context: admin-panel
     docker:
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
       target: development
     sync:
       manual:
       - src: 'src/**/*.js'
+        dest: '.'
+  - image: guyaltd/shop-web
+    context: shop-web
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'src/**/*.js'
+        dest: '.'
+  - image: guyaltd/xpress-web
+    context: xpress-web
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'src/**/*.js'
+        dest: '.'
+  - image: guyaltd/user
+    context: user
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'user/**/*.py'
         dest: '.'
 
 deploy:
   kustomize:
     paths:
     - guya/admin-panel/overlays/development
+    - guya/shop-web/overlays/development
+    - guya/xpress-web/overlays/development
+    - guya/user/overlays/development

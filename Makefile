@@ -25,3 +25,8 @@ init-kind-ingress: ## Create Nginx Ingress Controlelr and attach services
 
 .PHONY: init-kind
 init-kind: create-kind-cluster init-kind-ingress ## Kind Cluster with nginx cluster
+
+####### Docker Builds #######
+.PHONY: docker-build-admin-panel
+docker-build-admin-panel: ## Build base docker for dev
+	docker build -t guyaltd/admin-panel:build -f Dockerfile.build
