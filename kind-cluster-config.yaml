@@ -29,6 +29,39 @@ nodes:
   - containerPort: 30003
     hostPort: 5000
     protocol: TCP
+  # Branch Service
+  - containerPort: 30004
+    hostPort: 5000
+  # Cart Service
+  - containerPort: 30005
+    hostPort: 5000
+  # Catalog Service
+  - containerPort: 30006
+    hostPort: 5000
+  # Chat Service
+  - containerPort: 30007
+    hostPort: 5000
+  # Chipmunk Service
+  - containerPort: 30008
+    hostPort: 5000
+  # Dymo Service
+  - containerPort: 30009
+    hostPort: 5000
+  # Gatekeeper Service
+  - containerPort: 30010
+    hostPort: 5000
+  # Payment Service
+  - containerPort: 30011
+    hostPort: 5000
+  # Refme 
+  - containerPort: 30012
+    hostPort: 5000      
+  # Xpress Service
+  - containerPort: 30013
+    hostPort: 5000
+  # Xtrack Service
+  - containerPort: 30014
+    hostPort: 5000
 
 # uncomment below for creating workder node
 # - role: worker
