@@ -10,13 +10,6 @@ nodes:
   #    kubeletExtraArgs:
   #      node-labels: "ingress-ready=true"
   extraPortMappings:
-  - containerPort: 80
-    hostPort: 8000
-    protocol: TCP  
-  - containerPort: 443
-    #hostPort: 443
-    hostPort: 4433
-    protocol: TCP
   # Admin web
   - containerPort: 30001
     hostPort: 3000
@@ -31,37 +24,40 @@ nodes:
     protocol: TCP
   # Branch Service
   - containerPort: 30004
-    hostPort: 5000
+    hostPort: 6001
   # Cart Service
   - containerPort: 30005
-    hostPort: 5000
+    hostPort: 6002
   # Catalog Service
   - containerPort: 30006
-    hostPort: 5000
+    hostPort: 6003
   # Chat Service
   - containerPort: 30007
-    hostPort: 5000
+    hostPort: 6004
   # Chipmunk Service
   - containerPort: 30008
-    hostPort: 5000
+    hostPort: 6005
   # Dymo Service
   - containerPort: 30009
-    hostPort: 5000
+    hostPort: 6006
   # Gatekeeper Service
   - containerPort: 30010
-    hostPort: 5000
+    hostPort: 6007
   # Payment Service
   - containerPort: 30011
-    hostPort: 5000
+    hostPort: 6008
   # Refme 
   - containerPort: 30012
-    hostPort: 5000      
-  # Xpress Service
+    hostPort: 6009      
+  # User Service
   - containerPort: 30013
-    hostPort: 5000
-  # Xtrack Service
+    hostPort: 6010
+  # Xpress Service
   - containerPort: 30014
-    hostPort: 5000
+    hostPort: 6011
+  # Xtrack Service
+  - containerPort: 30015
+    hostPort: 6012
 
 # uncomment below for creating workder node
 # - role: worker

@@ -1,0 +1,23 @@
+# Host names
+# Static table lookup for hostnames.
+# See hosts(5) for details.
+
+127.0.0.1					localhost
+::1							localhost
+
+127.0.0.1:3000				panel.guya.com
+127.0.0.1:4000				guyashop.com
+127.0.0.1:5000				guyaxpress.com
+
+127.0.0.1:6001				api.branch.guya.com
+127.0.0.1:6002				api.cart.guya.com
+127.0.0.1:6003				api.catalog.guya.com
+127.0.0.1:6004				api.chat.guya.com
+127.0.0.1:6005				api.chipmunk.guya.com
+127.0.0.1:6006				api.dymo.guya.com
+127.0.0.1:6007				api.gatekeeper.guya.com
+127.0.0.1:6008				api.payment.guya.com
+127.0.0.1:6009				api.refme.guya.com
+127.0.0.1:6010				api.user.guya.com
+127.0.0.1:6011				api.xpress.guya.com
+127.0.0.1:6012				api.xtrack.guya.com

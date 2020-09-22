@@ -28,6 +28,6 @@ $ skaffold build
 
 ```
 
-$ skaffold dev --no-prune=false --cache-artifacts=false
+$ skaffold dev --no-prune=false --cache-artifacts
 
 ```

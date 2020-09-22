@@ -5,6 +5,7 @@ metadata:
 build:
   local: 
     concurrency: 0
+    push: false
   artifacts:
   - image: guyaltd/admin-panel 
     context: admin-panel
