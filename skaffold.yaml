@@ -7,6 +7,7 @@ build:
     concurrency: 0
     push: false
   artifacts:
+  # admin-panel
   - image: guyaltd/admin-panel 
     context: admin-panel
     docker:
@@ -16,6 +17,7 @@ build:
       manual:
       - src: 'src/**/*.js'
         dest: '.'
+  # shop-web
   - image: guyaltd/shop-web
     context: shop-web
     docker:
@@ -25,6 +27,7 @@ build:
       manual:
       - src: 'src/**/*.js'
         dest: '.'
+  # xpress-web
   - image: guyaltd/xpress-web
     context: xpress-web
     docker:
@@ -34,6 +37,48 @@ build:
       manual:
       - src: 'src/**/*.js'
         dest: '.'
+  # branch
+  - image: guyaltd/branch
+    context: branch
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'branch/**/*.py'
+        dest: '.'
+  # cart
+  - image: guyaltd/cart
+    context: cart
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'cart/**/*.py'
+        dest: '.'
+  # catalog
+  - image: guyaltd/catalog
+    context: catalog
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'catalog/**/*.py'
+        dest: '.'
+  # chipmunk
+  # dymo
+  - image: guyaltd/dymo
+    context: dymo
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'dymo/**/*.py'
+        dest: '.'
+  # user
   - image: guyaltd/user
     context: user
     docker:
@@ -43,11 +88,36 @@ build:
       manual:
       - src: 'user/**/*.py'
         dest: '.'
-
+  # xpress
+  - image: guyaltd/xpress
+    context: xpress
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'xpress/**/*.php'
+        dest: '.'
+  # xtrack
+  - image: guyaltd/xtrack
+    context: xtrack
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'xtrack/**/*.js'
+        dest: '.'
 deploy:
   kustomize:
     paths:
     - guya/admin-panel/overlays/development
     - guya/shop-web/overlays/development
     - guya/xpress-web/overlays/development
+    - guya/branch/overlays/development
+    - guya/cart/overlays/development
+    - guya/catalog/overlays/development
+    - guya/dymo/overlays/development
     - guya/user/overlays/development
+    - guya/xpress/overlays/development
+    - guya/xtrack/overlays/development
