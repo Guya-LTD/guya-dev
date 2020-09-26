@@ -28,6 +28,16 @@ $ skaffold build
 
 ```
 
-$ skaffold dev --no-prune=false --cache-artifacts
+skaffold dev --no-prune=false --cache-artifacts
 
+```
+
+## Mongo db
+
+```
+export MONGODB_ROOT_PASSWORD=$(kubectl get secret --namespace guya-ltd mongodb -o jsonpath="{.data.mongodb-root-password}" | base64 --decode)
+```
+
+```
+kubectl exec --stdin --tty -n guya-ltd pod/mongodb-0 -- mongo admin --host "mongodb" --authenticationDatabase admin -u root -p $MONGODB_ROOT_PASSWORD
 ```

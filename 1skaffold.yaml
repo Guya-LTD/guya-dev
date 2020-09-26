@@ -86,7 +86,7 @@ build:
       target: development
     sync:
       manual:
-      - src: 'payment/**/*.js'
+      - src: 'payment/**/*.py'
         dest: '.'
   # user
   - image: guyaltd/user
