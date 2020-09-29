@@ -1,0 +1,25 @@
+apiVersion: skaffold/v2beta7
+kind: Config
+metadata:
+  name: guya-dev
+build:
+  local: 
+    concurrency: 0
+    push: false
+  artifacts:
+  # Gatekeeper
+  - image: guyaltd/gatekeeper
+    context: gatekeeper
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'gatekeeper/**/*.py'
+        dest: '.'
+      - src: 'tests/**/*.py'
+        dest: '.'
+deploy:
+  kustomize:
+    paths:
+    - guya/gatekeeper/overlays/development
