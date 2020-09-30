@@ -1,0 +1,25 @@
+apiVersion: skaffold/v2beta7
+kind: Config
+metadata:
+  name: guya-dev
+build:
+  local: 
+    concurrency: 0
+    push: false
+  artifacts:
+  # dymo
+  - image: guyaltd/dymo
+    context: dymo
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'dymo/**/*.py'
+        dest: '.'
+      - src: 'tests/**/*.py'
+        dest: '.'
+deploy:
+  kustomize:
+    paths:
+    - guya/dymo/overlays/development

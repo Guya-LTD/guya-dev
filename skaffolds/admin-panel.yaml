@@ -1,0 +1,23 @@
+apiVersion: skaffold/v2beta8
+kind: Config
+metadata:
+  name: guya-dev
+build:
+  local: 
+    concurrency: 0
+    push: false
+  artifacts:
+  # admin-panel
+  - image: guyaltd/admin-panel 
+    context: admin-panel
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'src/**/*.js'
+        dest: '.'
+deploy:
+  kustomize:
+    paths:
+    - guya/admin-panel/overlays/development

@@ -1,0 +1,25 @@
+apiVersion: skaffold/v2beta7
+kind: Config
+metadata:
+  name: guya-dev
+build:
+  local: 
+    concurrency: 0
+    push: false
+  artifacts:
+  # catalog
+  - image: guyaltd/catalog
+    context: catalog
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'catalog/**/*.py'
+        dest: '.'
+      - src: 'tests/**/*.py'
+        dest: '.'
+deploy:
+  kustomize:
+    paths:
+    - guya/catalog/overlays/development

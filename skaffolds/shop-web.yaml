@@ -1,0 +1,23 @@
+apiVersion: skaffold/v2beta8
+kind: Config
+metadata:
+  name: guya-dev
+build:
+  local: 
+    concurrency: 0
+    push: false
+  artifacts:
+    # shop-web
+  - image: guyaltd/shop-web
+    context: shop-web
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'src/**/*.js'
+        dest: '.'
+deploy:
+  kustomize:
+    paths:
+    - guya/shop-web/overlays/development

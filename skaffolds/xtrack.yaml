@@ -1,0 +1,25 @@
+apiVersion: skaffold/v2beta7
+kind: Config
+metadata:
+  name: guya-dev
+build:
+  local: 
+    concurrency: 0
+    push: false
+  artifacts:
+  # xtrack
+  - image: guyaltd/xtrack
+    context: xtrack
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'xtrack/**/*.py'
+        dest: '.'
+      - src: 'tests/**/*.py'
+        dest: '.'
+deploy:
+  kustomize:
+    paths:
+    - guya/xtrack/overlays/development
