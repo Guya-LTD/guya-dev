@@ -7,8 +7,6 @@ build:
     concurrency: 0
     push: false
   artifacts:
-  
-
   # Gatekeeper
   - image: guyaltd/gatekeeper
     context: gatekeeper
@@ -21,15 +19,15 @@ build:
         dest: '.'
       - src: 'tests/**/*.py'
         dest: '.'
-  # payment
-  - image: guyaltd/payment
-    context: payment
+  # user
+  - image: guyaltd/user
+    context: user
     docker:
       dockerfile: Dockerfile.dev
       target: development
     sync:
       manual:
-      - src: 'payment/**/*.py'
+      - src: 'user/**/*.py'
         dest: '.'
       - src: 'tests/**/*.py'
         dest: '.'
@@ -37,4 +35,4 @@ deploy:
   kustomize:
     paths:
     - guya/gatekeeper/overlays/development
-    - guya/payment/overlays/development
+    - guya/user/overlays/development

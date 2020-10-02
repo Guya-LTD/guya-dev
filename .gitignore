@@ -26,6 +26,9 @@ xpress/
 xpress-web/
 xtrack/
 mocking-server/
+srs/
+e2e-tests/
+load-test/
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 dist/
