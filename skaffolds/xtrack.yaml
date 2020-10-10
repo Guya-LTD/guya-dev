@@ -15,9 +15,7 @@ build:
       target: development
     sync:
       manual:
-      - src: 'xtrack/**/*.py'
-        dest: '.'
-      - src: 'tests/**/*.py'
+      - src: '**/*.js'
         dest: '.'
 deploy:
   kustomize:
