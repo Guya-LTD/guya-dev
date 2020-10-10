@@ -1,0 +1,24 @@
+apiVersion: skaffold/v2beta7
+kind: Config
+metadata:
+  name: guya-dev
+build:
+  local: 
+    concurrency: 0
+    push: false
+  artifacts:
+  # Branch
+  - image: guyaltd/chipmunk
+    context: chipmunk
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+      network: host
+    sync:
+      manual:
+      - src: '**/*.php'
+        dest: '.'
+deploy:
+  kustomize:
+    paths:
+    - guya/chipmunk/overlays/development
