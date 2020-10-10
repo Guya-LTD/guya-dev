@@ -58,6 +58,10 @@ nodes:
   # Xtrack Service
   - containerPort: 30015
     hostPort: 6012
+  # Services
+  # Mailhog mailer server
+  - containerPort: 30100
+    hostPort: 7000
 
 # uncomment below for creating workder node
 # - role: worker
