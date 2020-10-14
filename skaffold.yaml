@@ -7,6 +7,18 @@ build:
     concurrency: 0
     push: false
   artifacts:
+  # Branch
+  - image: guyaltd/branch
+    context: branch
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'branch/**/*.py'
+        dest: '.'
+      - src: 'tests/**/*.py'
+        dest: '.'
   # Gatekeeper
   - image: guyaltd/gatekeeper
     context: gatekeeper
@@ -34,5 +46,6 @@ build:
 deploy:
   kustomize:
     paths:
+    - guya/branch/overlays/development
     - guya/gatekeeper/overlays/development
     - guya/user/overlays/development
