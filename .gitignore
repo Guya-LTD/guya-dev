@@ -29,6 +29,7 @@ mocking-server/
 srs/
 e2e-tests/
 load-test/
+docker-images/
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 dist/
