@@ -58,6 +58,7 @@ nodes:
   # Xtrack Service
   - containerPort: 30015
     hostPort: 6012
+    
   # Services
   # Mailhog mailer server
   - containerPort: 30100
