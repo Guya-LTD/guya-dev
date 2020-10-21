@@ -1,6 +1,10 @@
 # three node (two workers) cluster config
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
+containerdConfigPatches:
+- |-
+  [plugins."io.containerd.grpc.v1.cri".registry.mirrors."localhost:5000"]
+    endpoint = ["http://kind-registry:5000"]
 nodes:
 - role: control-plane
   #kubeadmConfigPatches:
@@ -12,15 +16,15 @@ nodes:
   extraPortMappings:
   # Admin web
   - containerPort: 30001
-    hostPort: 3000
+    hostPort: 10000
     protocol: TCP
   # Shop web
   - containerPort: 30002
-    hostPort: 4000
+    hostPort: 20000
     protocol: TCP
   # Xpress web
   - containerPort: 30003
-    hostPort: 5000
+    hostPort: 30000
     protocol: TCP
   # Branch Service
   - containerPort: 30004
