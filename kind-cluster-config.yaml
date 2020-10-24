@@ -28,45 +28,45 @@ nodes:
     protocol: TCP
   # Branch Service
   - containerPort: 30004
-    hostPort: 6001
+    hostPort: 60001
   # Cart Service
   - containerPort: 30005
-    hostPort: 6002
+    hostPort: 60002
   # Catalog Service
   - containerPort: 30006
-    hostPort: 6003
+    hostPort: 60003
   # Chat Service
   - containerPort: 30007
-    hostPort: 6004
+    hostPort: 60004
   # Chipmunk Service
   - containerPort: 30008
-    hostPort: 6005
+    hostPort: 60005
   # Dymo Service
   - containerPort: 30009
-    hostPort: 6006
+    hostPort: 60006
   # Gatekeeper Service
   - containerPort: 30010
-    hostPort: 6007
+    hostPort: 60007
   # Payment Service
   - containerPort: 30011
-    hostPort: 6008
+    hostPort: 60008
   # Refme 
   - containerPort: 30012
-    hostPort: 6009      
+    hostPort: 60009      
   # User Service
   - containerPort: 30013
-    hostPort: 6010
+    hostPort: 60010
   # Xpress Service
   - containerPort: 30014
-    hostPort: 6011
+    hostPort: 60011
   # Xtrack Service
   - containerPort: 30015
-    hostPort: 6012
+    hostPort: 60012
     
   # Services
   # Mailhog mailer server
   - containerPort: 30100
-    hostPort: 7000
+    hostPort: 70000
 
 # uncomment below for creating workder node
 # - role: worker
