@@ -19,7 +19,20 @@ build:
         dest: '.'
       - src: 'tests/**/*.py'
         dest: '.'
+  # Mocking Server
+  - image: guyaltd/mocking-server 
+    context: mocking-server
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: '**/*.js'
+        dest: '.'
+      - src: '**/*.json'
+        dest: '.'
 deploy:
   kustomize:
     paths:
     - guya/branch/overlays/development
+    - guya/mocking-server/base
