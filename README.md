@@ -32,6 +32,11 @@ skaffold dev --no-prune=false --cache-artifacts
 
 ```
 
+Remove and untaged images
+```
+skaffold dev --no-prune=false --cache-artifacts=false
+```
+
 ## Mongo db
 
 ```
