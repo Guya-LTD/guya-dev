@@ -1,0 +1,18 @@
+apiVersion: skaffold/v2beta7
+kind: Config
+metadata:
+  name: guya-dev
+build:
+  local: 
+    concurrency: 0
+    push: false
+  artifacts:
+  # Mongo Connector
+  - image: guyaltd/mongo-connector
+    context: mongo-connector
+    docker:
+      dockerfile: Dockerfile
+deploy:
+  kustomize:
+    paths:
+    - guya/mongo-connector/base
