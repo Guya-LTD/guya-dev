@@ -7,6 +7,19 @@ build:
     concurrency: 0
     push: false
   artifacts:
+  # Mocking Server
+  - image: guyaltd/mocking-server 
+    context: mocking-server
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: '**/*.js'
+        dest: '.'
+      - src: '**/*.json'
+        dest: '.'
+
   # Branch
   - image: guyaltd/branch
     context: branch
@@ -19,46 +32,14 @@ build:
         dest: '.'
       - src: 'tests/**/*.py'
         dest: '.'
-  # cart
-  - image: guyaltd/cart
-    context: cart
+  # Mongo Connector
+  - image: guyaltd/mongo-connector
+    context: mongo-connector
     docker:
-      dockerfile: Dockerfile.dev
-      target: development
-    sync:
-      manual:
-      - src: 'cart/**/*.py'
-        dest: '.'
-      - src: 'tests/**/*.py'
-        dest: '.'
-  # Gatekeeper
-  - image: guyaltd/gatekeeper
-    context: gatekeeper
-    docker:
-      dockerfile: Dockerfile.dev
-      target: development
-    sync:
-      manual:
-      - src: 'gatekeeper/**/*.py'
-        dest: '.'
-      - src: 'tests/**/*.py'
-        dest: '.'
-  # user
-  - image: guyaltd/user
-    context: user
-    docker:
-      dockerfile: Dockerfile.dev
-      target: development
-    sync:
-      manual:
-      - src: 'user/**/*.py'
-        dest: '.'
-      - src: 'tests/**/*.py'
-        dest: '.'
+      dockerfile: Dockerfile
 deploy:
   kustomize:
     paths:
+    - guya/mocking-server/base
     - guya/branch/overlays/development
-    - guya/cart/overlays/development
-    - guya/gatekeeper/overlays/development
-    - guya/user/overlays/development
+    - guya/mongo-connector/base
