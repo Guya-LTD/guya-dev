@@ -1,0 +1,27 @@
+apiVersion: skaffold/v2beta7
+kind: Config
+metadata:
+  name: guya-dev
+build:
+  local: 
+    concurrency: 0
+    push: false
+  artifacts:
+  # Branch
+  - image: guyaltd/profanity-detector
+    context: profanity-detector
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'profanity-detector/**/*.py'
+        dest: '.'
+      - src: 'tests/**/*.py'
+        dest: '.'
+      - src: 'ml/**/*.py'
+        dest: '.'
+deploy:
+  kustomize:
+    paths:
+    - guya/profanity-detector/overlays/development

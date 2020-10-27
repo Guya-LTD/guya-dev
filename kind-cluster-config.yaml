@@ -62,6 +62,9 @@ nodes:
   # Xtrack Service
   - containerPort: 30015
     hostPort: 60012
+  # Profanity Detector
+  - containerPort: 30016
+    hostPort: 60013
     
   # Services
   # Mailhog mailer server
