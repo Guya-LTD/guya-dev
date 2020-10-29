@@ -15,9 +15,9 @@ build:
       target: development
     sync:
       manual:
-      - src: 'dymo/**/*.py'
+      - src: 'labels/**/.pdf'
         dest: '.'
-      - src: 'tests/**/*.py'
+      - src: 'routes/**/.js'
         dest: '.'
 deploy:
   kustomize:
