@@ -1,0 +1,22 @@
+apiVersion: skaffold/v2beta7
+kind: Config
+metadata:
+  name: guya-dev
+build:
+  local: 
+    concurrency: 0
+    push: false
+  artifacts:
+  # envoy
+  - image: guyaltd/envoy
+    context: envoy
+    docker:
+      dockerfile: Dockerfile
+    sync:
+      manual:
+      - src: '**/*.yaml'
+        dest: '.'
+deploy:
+  kustomize:
+    paths:
+    - guya/envoy/base
