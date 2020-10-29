@@ -1,0 +1,33 @@
+apiVersion: skaffold/v2beta8
+kind: Config
+metadata:
+  name: guya-dev
+build:
+  local: 
+    concurrency: 0
+    push: false
+  artifacts:
+  # chat
+  - image: guyaltd/chat 
+    context: chat
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'bin/**/**'
+        dest: '.'
+      - src: 'config/**/*.js'
+        dest: '.'
+      - src: 'controllers/**/*.js'
+        dest: '.'
+      - src: 'migrations/**/*.js'
+        dest: '.'
+      - src: 'models/**/*.js'
+        dest: '.'
+      - src: 'routes/**/*.js'
+        dest: '.'
+deploy:
+  kustomize:
+    paths:
+    - guya/chat/overlays/development
