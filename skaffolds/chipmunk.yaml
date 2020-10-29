@@ -7,7 +7,7 @@ build:
     concurrency: 0
     push: false
   artifacts:
-  # Branch
+  # Chipmunk
   - image: guyaltd/chipmunk
     context: chipmunk
     docker:
@@ -17,6 +17,8 @@ build:
     sync:
       manual:
       - src: '**/*.php'
+        dest: '.'
+      - src: 'templates/**/*.twig'
         dest: '.'
 deploy:
   kustomize:
