@@ -1,0 +1,26 @@
+apiVersion: skaffold/v2beta7
+kind: Config
+metadata:
+  name: guya-dev
+build:
+  local: 
+    concurrency: 0
+    push: false
+  artifacts:
+  # refme
+  - image: guyaltd/refme
+    context: refme
+    docker:
+      dockerfile: Dockerfile
+    sync:
+      manual:
+      - src: 'src/**/*.h'
+        dest: '.'
+      - src: 'references/**/*.csv'
+        dest: '.'
+      - src: '**/*.cc'
+        dest: '.'
+deploy:
+  kustomize:
+    paths:
+    - guya/refme/overlays/development
