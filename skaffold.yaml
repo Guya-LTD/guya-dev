@@ -7,6 +7,110 @@ build:
     concurrency: 0
     push: false
   artifacts:
+  # Admin Panel
+  - image: guyaltd/admin-panel 
+    context: admin-panel
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'src/**/*.js'
+        dest: '.'
+  # Branch Service
+  - image: guyaltd/branch
+    context: branch
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'branch/**/*.py'
+        dest: '.'
+      - src: 'tests/**/*.py'
+        dest: '.'
+  # Cart Service
+  - image: guyaltd/cart
+    context: cart
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'cart/**/*.py'
+        dest: '.'
+      - src: 'tests/**/*.py'
+        dest: '.'
+  # Catalog Service
+  - image: guyaltd/catalog
+    context: catalog
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'catalog/**/*.py'
+        dest: '.'
+      - src: 'tests/**/*.py'
+        dest: '.'
+  # Chat Service
+  - image: guyaltd/chat 
+    context: chat
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'bin/**/**'
+        dest: '.'
+      - src: 'config/**/*.js'
+        dest: '.'
+      - src: 'controllers/**/*.js'
+        dest: '.'
+      - src: 'migrations/**/*.js'
+        dest: '.'
+      - src: 'models/**/*.js'
+        dest: '.'
+      - src: 'routes/**/*.js'
+        dest: '.'
+  # Chipmunk Service
+  - image: guyaltd/chipmunk
+    context: chipmunk
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+      network: host
+    sync:
+      manual:
+      - src: '**/*.php'
+        dest: '.'
+      - src: 'templates/**/*.twig'
+        dest: '.'
+  # Dymo Service
+  - image: guyaltd/dymo
+    context: dymo
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'labels/**/.pdf'
+        dest: '.'
+      - src: 'routes/**/.js'
+        dest: '.'
+  # Gatekeeper Service
+  - image: guyaltd/gatekeeper
+    context: gatekeeper
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'gatekeeper/**/*.py'
+        dest: '.'
+      - src: 'tests/**/*.py'
+        dest: '.'
+  # !/
   # Mocking Server
   - image: guyaltd/mocking-server 
     context: mocking-server
@@ -19,27 +123,171 @@ build:
         dest: '.'
       - src: '**/*.json'
         dest: '.'
-
-  # Branch
-  - image: guyaltd/branch
-    context: branch
+  # /!
+  # Mongo indexer
+  - image: guyaltd/mongo-indexer
+    context: mongo-indexer
+    docker:
+      dockerfile: Dockerfile
+    sync:
+      manual:
+      - src: '**/*.toml'
+        dest: '.'
+  # Order Service
+  - image: guyaltd/order
+    context: order
     docker:
       dockerfile: Dockerfile.dev
       target: development
     sync:
       manual:
-      - src: 'branch/**/*.py'
+      - src: 'order/**/*.py'
         dest: '.'
       - src: 'tests/**/*.py'
         dest: '.'
-  # Mongo Connector
-  - image: guyaltd/mongo-connector
-    context: mongo-connector
+  # Payment Service
+  - image: guyaltd/payment
+    context: payment
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'payment/**/*.py'
+        dest: '.'
+      - src: 'tests/**/*.py'
+        dest: '.'
+  # Profanity Detector
+  - image: guyaltd/profanity-detector
+    context: profanity-detector
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'profanity-detector/**/*.py'
+        dest: '.'
+      - src: 'tests/**/*.py'
+        dest: '.'
+      - src: 'ml/**/*.py'
+        dest: '.'
+  # Envoy Proxy
+  - image: guyaltd/envoy
+    context: envoy
     docker:
       dockerfile: Dockerfile
+    sync:
+      manual:
+      - src: '**/*.yaml'
+        dest: '.'
+  # Refme Service
+  - image: guyaltd/refme
+    context: refme
+    docker:
+      dockerfile: Dockerfile
+    sync:
+      manual:
+      - src: 'src/**/*.h'
+        dest: '.'
+      - src: 'references/**/*.csv'
+        dest: '.'
+      - src: '**/*.cc'
+        dest: '.'
+  # Shop Web Service
+  - image: guyaltd/shop-web
+    context: shop-web
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'src/**/*.js'
+        dest: '.'
+  # User Service
+  - image: guyaltd/user
+    context: user
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'user/**/*.py'
+        dest: '.'
+      - src: 'tests/**/*.py'
+        dest: '.'
+  # Mailhog Mail Server
+  - image: guyaltd/mailhog
+    context: mailhog
+    docker:
+      dockerfile: Dockerfile
+  # User Service
+  - image: guyaltd/user
+    context: user
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'user/**/*.py'
+        dest: '.'
+      - src: 'tests/**/*.py'
+        dest: '.'
+  # Xpress Service
+  - image: guyaltd/xpress
+    context: xpress
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: '**/*.php'
+        dest: '.'
+      - src: 'templates/**/*.twig'
+        dest: '.'
+  # Xpress Web
+  - image: guyaltd/xpress-web
+    context: xpress-web
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'src/**/*.js'
+        dest: '.'
+  # Xtrack
+  - image: guyaltd/xtrack
+    context: xtrack
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: '**/*.js'
+        dest: '.'
 deploy:
   kustomize:
     paths:
-    - guya/mocking-server/base
+    - guya/admin-panel/overlays/development
     - guya/branch/overlays/development
-    - guya/mongo-connector/base
+    - guya/cart/overlays/development
+    - guya/catalog/overlays/development
+    - guya/chat/overlays/development
+    - guya/chipmunk/overlays/development
+    - guya/dymo/overlays/development
+    - guya/gatekeeper/overlays/development
+    # !/
+    - guya/mocking-server/base
+    # /!
+    - guya/mongo-indexer/base
+    - guya/order/overlays/development
+    - guya/payment/overlays/development
+    - guya/profanity-detector/overlays/development
+    - guya/envoy/base
+    - guya/refme/overlays/development
+    - guya/shop-web/overlays/development
+    - guya/user/overlays/development
+    - guya/mailhog/base
+    - guya/user/overlays/development
+    - guya/xpress/overlays/development
+    - guya/xpress-web/overlays/development
+    - guya/xtrack/overlays/development
