@@ -65,6 +65,10 @@ nodes:
   # Profanity Detector
   - containerPort: 30016
     hostPort: 60013
+  # Order Service
+  - containerPort: 30017
+    hostPort: 60014
+    
     
   # Services
   # Mailhog mailer server
