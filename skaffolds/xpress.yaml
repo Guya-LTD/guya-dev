@@ -1,0 +1,26 @@
+apiVersion: skaffold/v2beta7
+kind: Config
+metadata:
+  name: guya-dev
+build:
+  local: 
+    concurrency: 0
+    push: false
+  artifacts:
+  # xpress
+  - image: guyaltd/xpress
+    context: xpress
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+      network: host
+    sync:
+      manual:
+      - src: '**/*.php'
+        dest: '.'
+      - src: 'templates/**/*.twig'
+        dest: '.'
+deploy:
+  kustomize:
+    paths:
+    - guya/xpress/overlays/development
