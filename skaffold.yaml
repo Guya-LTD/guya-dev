@@ -286,7 +286,7 @@ deploy:
     - guya/refme/overlays/development
     - guya/shop-web/overlays/development
     - guya/user/overlays/development
-    - guya/mailhog/base
+    #- guya/mailhog/base
     - guya/user/overlays/development
     - guya/xpress/overlays/development
     - guya/xpress-web/overlays/development
