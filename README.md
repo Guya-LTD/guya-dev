@@ -37,6 +37,11 @@ Remove and untaged images
 skaffold dev --no-prune=false --cache-artifacts=false
 ```
 
+Auto sync for skafofld starting from version `v1.16.0`
+```
+skaffold dev --trigger=polling
+```
+
 ## Mongo db
 
 ```
