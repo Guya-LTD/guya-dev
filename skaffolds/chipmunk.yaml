@@ -16,10 +16,15 @@ build:
       network: host
     sync:
       manual:
-      - src: '**/*.php'
+      - src: 'src/**/*.php'
         dest: '.'
       - src: 'templates/**/*.twig'
         dest: '.'
+  # Mailhog Mail Server
+  - image: guyaltd/mailhog
+    context: mailhog
+    docker:
+      dockerfile: Dockerfile
 deploy:
   kustomize:
     paths:
