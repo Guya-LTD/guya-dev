@@ -17,6 +17,16 @@ build:
       manual:
       - src: '**/*.js'
         dest: '.'
+  # Xtrack Simulator Server
+  - image: guyaltd/xtrack-simulator
+    context: xtrack-simulator
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: '**/*.js'
+        dest: '.'
 deploy:
   kustomize:
     paths:
