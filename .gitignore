@@ -37,6 +37,9 @@ envoy/
 mailhog/
 recommender/
 xtrack-simulator/
+api-gateway/
+gcli/
+react-ionicons-icon/
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 dist/

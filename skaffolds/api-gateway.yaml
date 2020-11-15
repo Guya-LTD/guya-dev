@@ -1,0 +1,22 @@
+apiVersion: skaffold/v2beta8
+kind: Config
+metadata:
+  name: guya-dev
+build:
+  local: 
+    concurrency: 0
+    push: false
+  artifacts:
+  # Api Gateway
+  - image: guyaltd/api-gateway
+    context: api-gateway
+    docker:
+      dockerfile: Dockerfile
+    sync:
+      manual:
+      - src: '/**/*.conf'
+        dest: '.'
+deploy:
+  kustomize:
+    paths:
+    - guya/api-gateway/base

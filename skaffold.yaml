@@ -112,17 +112,17 @@ build:
         dest: '.'
   # !/
   # Mocking Server
-  - image: guyaltd/mocking-server 
-    context: mocking-server
-    docker:
-      dockerfile: Dockerfile.dev
-      target: development
-    sync:
-      manual:
-      - src: '**/*.js'
-        dest: '.'
-      - src: '**/*.json'
-        dest: '.'
+  #- image: guyaltd/mocking-server 
+  #  context: mocking-server
+  #  docker:
+  #    dockerfile: Dockerfile.dev
+  #    target: development
+  #  sync:
+  #    manual:
+  #    - src: '**/*.js'
+  #      dest: '.'
+  #    - src: '**/*.json'
+  #      dest: '.'
   # /!
   # Mongo indexer
   - image: guyaltd/mongo-indexer
@@ -286,7 +286,7 @@ deploy:
     - guya/dymo/overlays/development
     - guya/gatekeeper/overlays/development
     # !/
-    - guya/mocking-server/base
+    #- guya/mocking-server/base
     # /!
     - guya/mongo-indexer/base
     - guya/order/overlays/development
