@@ -21,20 +21,17 @@ build:
         dest: '.'
       - src: 'public/**/*.js'
         dest: '.'
-  # Gatekeeper
-  - image: guyaltd/gatekeeper
-    context: gatekeeper
+  # Api Gateway
+  - image: guyaltd/api-gateway
+    context: api-gateway
     docker:
-      dockerfile: Dockerfile.dev
-      target: development
+      dockerfile: Dockerfile
     sync:
       manual:
-      - src: 'gatekeeper/**/*.py'
-        dest: '.'
-      - src: 'tests/**/*.py'
+      - src: '/**/*.conf'
         dest: '.'
 deploy:
   kustomize:
     paths:
     - guya/admin-panel/overlays/development
-    - guya/gatekeeper/overlays/development
+    - guya/api-gateway/base

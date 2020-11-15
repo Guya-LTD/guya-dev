@@ -1,0 +1,83 @@
+# three node (two workers) cluster config
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+containerdConfigPatches:
+- |-
+  [plugins."io.containerd.grpc.v1.cri".registry.mirrors."localhost:5000"]
+    endpoint = ["http://kind-registry:5000"]
+nodes:
+- role: control-plane
+  #kubeadmConfigPatches:
+  #- |
+  #  kind: InitConfiguration
+  #  nodeRegistration:
+  #    kubeletExtraArgs:
+  #      node-labels: "ingress-ready=true"
+  extraPortMappings:
+  # Admin web
+  - containerPort: 30001
+    hostPort: 10000
+    protocol: TCP
+  # Shop web
+  - containerPort: 30002
+    hostPort: 20000
+    protocol: TCP
+  # Xpress web
+  - containerPort: 30003
+    hostPort: 30000
+    protocol: TCP
+  # Branch Service
+  - containerPort: 30004
+    hostPort: 60001
+  # Cart Service
+  - containerPort: 30005
+    hostPort: 60002
+  # Catalog Service
+  - containerPort: 30006
+    hostPort: 60003
+  # Chat Service
+  - containerPort: 30007
+    hostPort: 60004
+  # Chipmunk Service
+  - containerPort: 30008
+    hostPort: 60005
+  # Dymo Service
+  - containerPort: 30009
+    hostPort: 60006
+  # Gatekeeper Service
+  - containerPort: 30010
+    hostPort: 60007
+  # Payment Service
+  - containerPort: 30011
+    hostPort: 60008
+  # Refme 
+  - containerPort: 30012
+    hostPort: 60009      
+  # User Service
+  - containerPort: 30013
+    hostPort: 60010
+  # Xpress Service
+  - containerPort: 30014
+    hostPort: 60011
+  # Xtrack Service
+  - containerPort: 30015
+    hostPort: 60012
+  # Profanity Detector
+  - containerPort: 30016
+    hostPort: 60013
+  # Order Service
+  - containerPort: 30017
+    hostPort: 60014
+    
+    
+  # Services
+  # Mailhog mailer server
+  - containerPort: 30100
+    hostPort: 61000
+
+  # API Gateway
+  - containerPort: 30200
+    hostPort: 60000
+
+# uncomment below for creating workder node
+# - role: worker
