@@ -7,19 +7,17 @@ build:
     concurrency: 0
     push: false
   artifacts:
-  # admin-panel
-  - image: guyaltd/admin-panel 
-    context: admin-panel
+  # Branch
+  - image: guyaltd/branch
+    context: branch
     docker:
       dockerfile: Dockerfile.dev
       target: development
     sync:
       manual:
-      - src: 'src/**/*.js'
+      - src: 'branch/**/*.py'
         dest: '.'
-      - src: 'public/**/*.css'
-        dest: '.'
-      - src: 'public/**/*.js'
+      - src: 'tests/**/*.py'
         dest: '.'
   # Api Gateway
   - image: guyaltd/api-gateway
@@ -33,5 +31,5 @@ build:
 deploy:
   kustomize:
     paths:
-    - guya/admin-panel/overlays/development
+    - guya/branch/overlays/development
     - guya/api-gateway/base
