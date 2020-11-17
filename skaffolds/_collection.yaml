@@ -7,15 +7,41 @@ build:
     concurrency: 0
     push: false
   artifacts:
-  # Branch
-  - image: guyaltd/branch
-    context: branch
+  # admin-panel
+  - image: guyaltd/admin-panel 
+    context: admin-panel
     docker:
       dockerfile: Dockerfile.dev
       target: development
     sync:
       manual:
-      - src: 'branch/**/*.py'
+      - src: 'src/**/*.js'
+        dest: '.'
+      - src: 'public/**/*.css'
+        dest: '.'
+      - src: 'public/**/*.js'
+        dest: '.'
+  # user
+  - image: guyaltd/user
+    context: user
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'user/**/*.py'
+        dest: '.'
+      - src: 'tests/**/*.py'
+        dest: '.'
+  # Gatekeeper
+  - image: guyaltd/gatekeeper
+    context: gatekeeper
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'gatekeeper/**/*.py'
         dest: '.'
       - src: 'tests/**/*.py'
         dest: '.'
@@ -26,10 +52,18 @@ build:
       dockerfile: Dockerfile
     sync:
       manual:
-      - src: '/**/*.conf'
+      - src: 'api_conf.d/**/*.conf'
+        dest: '.'
+      - src: 'errors'
+        dest: '.'
+      - src: 'nginx.conf'
+        dest: '.'
+      - src: 'api_json_errors.conf'
         dest: '.'
 deploy:
   kustomize:
     paths:
-    - guya/branch/overlays/development
+    - guya/gatekeeper/overlays/development
+    - guya/admin-panel/overlays/development
+    - guya/user/overlays/development
     - guya/api-gateway/base

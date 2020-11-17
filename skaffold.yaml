@@ -17,6 +17,10 @@ build:
       manual:
       - src: 'src/**/*.js'
         dest: '.'
+      - src: 'public/**/*.css'
+        dest: '.'
+      - src: 'public/**/*.js'
+        dest: '.'
   # Branch Service
   - image: guyaltd/branch
     context: branch
@@ -274,6 +278,21 @@ build:
       manual:
       - src: '**/*.js'
         dest: '.'
+  # Api Gateway
+  - image: guyaltd/api-gateway
+    context: api-gateway
+    docker:
+      dockerfile: Dockerfile
+    sync:
+      manual:
+      - src: 'api_conf.d/**/*.conf'
+        dest: '.'
+      - src: 'errors'
+        dest: '.'
+      - src: 'nginx.conf'
+        dest: '.'
+      - src: 'api_json_errors.conf'
+        dest: '.'
 deploy:
   kustomize:
     paths:
@@ -301,3 +320,4 @@ deploy:
     - guya/xpress/overlays/development
     - guya/xpress-web/overlays/development
     - guya/xtrack/overlays/development
+    - guya/api-gateway/base
