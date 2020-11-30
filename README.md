@@ -51,3 +51,8 @@ export MONGODB_ROOT_PASSWORD=$(kubectl get secret --namespace guya-ltd mongodb -
 ```
 kubectl exec --stdin --tty -n guya-ltd pod/mongodb-0 -- mongo admin --host "mongodb" --authenticationDatabase admin -u root -p $MONGODB_ROOT_PASSWORD
 ```
+
+## Kibana
+```
+kubectl port-forward -n guya-ltd-elk service/kibana-kibana 5601
+```

@@ -7,20 +7,6 @@ build:
     concurrency: 0
     push: false
   artifacts:
-  # admin-panel
-  - image: guyaltd/admin-panel 
-    context: admin-panel
-    docker:
-      dockerfile: Dockerfile.dev
-      target: development
-    sync:
-      manual:
-      - src: 'src/**/*.js'
-        dest: '.'
-      - src: 'public/**/*.css'
-        dest: '.'
-      - src: 'public/**/*.js'
-        dest: '.'
   # user
   - image: guyaltd/user
     context: user
@@ -52,18 +38,11 @@ build:
       dockerfile: Dockerfile
     sync:
       manual:
-      - src: 'api_conf.d/**/*.conf'
-        dest: '.'
-      - src: 'errors'
-        dest: '.'
-      - src: 'nginx.conf'
-        dest: '.'
-      - src: 'api_json_errors.conf'
+      - src: '/**/*.conf'
         dest: '.'
 deploy:
   kustomize:
     paths:
     - guya/gatekeeper/overlays/development
-    - guya/admin-panel/overlays/development
     - guya/user/overlays/development
     - guya/api-gateway/base

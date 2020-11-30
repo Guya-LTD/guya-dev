@@ -207,18 +207,6 @@ build:
       manual:
       - src: 'src/**/*.js'
         dest: '.'
-  # User Service
-  - image: guyaltd/user
-    context: user
-    docker:
-      dockerfile: Dockerfile.dev
-      target: development
-    sync:
-      manual:
-      - src: 'user/**/*.py'
-        dest: '.'
-      - src: 'tests/**/*.py'
-        dest: '.'
   # Mailhog Mail Server
   - image: guyaltd/mailhog
     context: mailhog
@@ -314,7 +302,6 @@ deploy:
     - guya/envoy/base
     - guya/refme/overlays/development
     - guya/shop-web/overlays/development
-    - guya/user/overlays/development
     #- guya/mailhog/base
     - guya/user/overlays/development
     - guya/xpress/overlays/development
