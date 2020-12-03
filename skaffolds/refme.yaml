@@ -20,6 +20,11 @@ build:
         dest: '.'
       - src: '**/*.cc'
         dest: '.'
+  # Envoy Proxy
+  - image: guyaltd/envoy
+    context: envoy
+    docker:
+      dockerfile: Dockerfile
 deploy:
   kustomize:
     paths:

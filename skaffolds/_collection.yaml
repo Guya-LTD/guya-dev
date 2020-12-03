@@ -40,9 +40,22 @@ build:
       manual:
       - src: '/**/*.conf'
         dest: '.'
+  # cart
+  - image: guyaltd/cart
+    context: cart
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'cart/**/*.py'
+        dest: '.'
+      - src: 'tests/**/*.py'
+        dest: '.'
 deploy:
   kustomize:
     paths:
     - guya/gatekeeper/overlays/development
     - guya/user/overlays/development
     - guya/api-gateway/base
+    - guya/cart/overlays/development
