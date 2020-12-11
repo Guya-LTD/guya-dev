@@ -40,15 +40,49 @@ build:
       manual:
       - src: '/**/*.conf'
         dest: '.'
-  # cart
-  - image: guyaltd/cart
-    context: cart
+  # Chipmunk
+  - image: guyaltd/chipmunk
+    context: chipmunk
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+      network: host
+    sync:
+      manual:
+      - src: 'app/**/*.php'
+        dest: '.'
+      - src: 'public/**/*.php'
+        dest: '.'
+      - src: 'src/**/*.php'
+        dest: '.'
+      - src: 'templates/**/*.twig'
+        dest: '.'
+  # Mailhog Mail Server
+  - image: guyaltd/mailhog
+    context: mailhog
+    docker:
+      dockerfile: Dockerfile
+  # Mocking Server
+  - image: guyaltd/mocking-server 
+    context: mocking-server
     docker:
       dockerfile: Dockerfile.dev
       target: development
     sync:
       manual:
-      - src: 'cart/**/*.py'
+      - src: '**/*.js'
+        dest: '.'
+      - src: '**/*.json'
+        dest: '.'
+  # catalog
+  - image: guyaltd/catalog
+    context: catalog
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'catalog/**/*.py'
         dest: '.'
       - src: 'tests/**/*.py'
         dest: '.'
@@ -58,4 +92,6 @@ deploy:
     - guya/gatekeeper/overlays/development
     - guya/user/overlays/development
     - guya/api-gateway/base
-    - guya/cart/overlays/development
+    - guya/chipmunk/overlays/development
+    - guya/catalog/overlays/development
+    - guya/mocking-server/base

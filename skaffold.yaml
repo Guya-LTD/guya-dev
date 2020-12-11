@@ -86,7 +86,11 @@ build:
       network: host
     sync:
       manual:
-      - src: '**/*.php'
+      - src: 'app/**/*.php'
+        dest: '.'
+      - src: 'public/**/*.php'
+        dest: '.'
+      - src: 'src/**/*.php'
         dest: '.'
       - src: 'templates/**/*.twig'
         dest: '.'
@@ -180,10 +184,6 @@ build:
     context: envoy
     docker:
       dockerfile: Dockerfile
-    sync:
-      manual:
-      - src: '**/*.yaml'
-        dest: '.'
   # Refme Service
   - image: guyaltd/refme
     context: refme
@@ -299,7 +299,7 @@ deploy:
     - guya/order/overlays/development
     - guya/payment/overlays/development
     - guya/profanity-detector/overlays/development
-    - guya/envoy/base
+    #- guya/envoy/base
     - guya/refme/overlays/development
     - guya/shop-web/overlays/development
     #- guya/mailhog/base

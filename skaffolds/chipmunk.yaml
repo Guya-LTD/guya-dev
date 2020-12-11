@@ -16,6 +16,10 @@ build:
       network: host
     sync:
       manual:
+      - src: 'app/**/*.php'
+        dest: '.'
+      - src: 'public/**/*.php'
+        dest: '.'
       - src: 'src/**/*.php'
         dest: '.'
       - src: 'templates/**/*.twig'

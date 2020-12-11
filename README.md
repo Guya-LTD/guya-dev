@@ -56,3 +56,8 @@ kubectl exec --stdin --tty -n guya-ltd pod/mongodb-0 -- mongo admin --host "mong
 ```
 kubectl port-forward -n guya-ltd-elk service/kibana-kibana 5601
 ```
+
+## Rabbitmq
+```
+kubectl port-forward --namespace guya-ltd-queue svc/rabbitmq 15672:15672
+```
