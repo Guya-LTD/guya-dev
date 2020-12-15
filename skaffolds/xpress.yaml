@@ -20,6 +20,11 @@ build:
         dest: '.'
       - src: 'templates/**/*.twig'
         dest: '.'
+  # Mailhog Mail Server
+  - image: guyaltd/mysql
+    context: mysql
+    docker:
+      dockerfile: Dockerfile  
 deploy:
   kustomize:
     paths:
