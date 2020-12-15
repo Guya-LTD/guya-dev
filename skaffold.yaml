@@ -236,6 +236,10 @@ build:
         dest: '.'
       - src: 'templates/**/*.twig'
         dest: '.'
+  - image: guyaltd/mysql
+    context: mysql
+    docker:
+      dockerfile: Dockerfile
   # Xpress Web
   - image: guyaltd/xpress-web
     context: xpress-web
