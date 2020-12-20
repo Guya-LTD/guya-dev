@@ -7,17 +7,14 @@ build:
     concurrency: 0
     push: false
   artifacts:
-  # user
-  - image: guyaltd/user
-    context: user
+  # Api Gateway
+  - image: guyaltd/api-gateway
+    context: api-gateway
     docker:
-      dockerfile: Dockerfile.dev
-      target: development
+      dockerfile: Dockerfile
     sync:
       manual:
-      - src: 'user/**/*.py'
-        dest: '.'
-      - src: 'tests/**/*.py'
+      - src: '/**/*.conf'
         dest: '.'
   # Gatekeeper
   - image: guyaltd/gatekeeper
@@ -31,14 +28,17 @@ build:
         dest: '.'
       - src: 'tests/**/*.py'
         dest: '.'
-  # Api Gateway
-  - image: guyaltd/api-gateway
-    context: api-gateway
+  # user
+  - image: guyaltd/user
+    context: user
     docker:
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
+      target: development
     sync:
       manual:
-      - src: '/**/*.conf'
+      - src: 'user/**/*.py'
+        dest: '.'
+      - src: 'tests/**/*.py'
         dest: '.'
   # Chipmunk
   - image: guyaltd/chipmunk
@@ -62,36 +62,23 @@ build:
     context: mailhog
     docker:
       dockerfile: Dockerfile
-  # Mocking Server
-  - image: guyaltd/mocking-server 
-    context: mocking-server
+
+
+  # admin-panel
+  - image: guyaltd/admin-panel 
+    context: admin-panel
     docker:
       dockerfile: Dockerfile.dev
       target: development
     sync:
       manual:
-      - src: '**/*.js'
-        dest: '.'
-      - src: '**/*.json'
-        dest: '.'
-  # catalog
-  - image: guyaltd/catalog
-    context: catalog
-    docker:
-      dockerfile: Dockerfile.dev
-      target: development
-    sync:
-      manual:
-      - src: 'catalog/**/*.py'
-        dest: '.'
-      - src: 'tests/**/*.py'
+      - src: 'src/**/*.js'
         dest: '.'
 deploy:
   kustomize:
     paths:
+    - guya/api-gateway/base
     - guya/gatekeeper/overlays/development
     - guya/user/overlays/development
-    - guya/api-gateway/base
     - guya/chipmunk/overlays/development
-    - guya/catalog/overlays/development
-    - guya/mocking-server/base
+    - guya/admin-panel/overlays/development

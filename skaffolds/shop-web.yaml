@@ -7,6 +7,15 @@ build:
     concurrency: 0
     push: false
   artifacts:
+  # Api Gateway
+  - image: guyaltd/api-gateway
+    context: api-gateway
+    docker:
+      dockerfile: Dockerfile
+    sync:
+      manual:
+      - src: '/**/*.conf'
+        dest: '.'
     # shop-web
   - image: guyaltd/shop-web
     context: shop-web
@@ -20,4 +29,5 @@ build:
 deploy:
   kustomize:
     paths:
+    - guya/api-gateway/base
     - guya/shop-web/overlays/development
