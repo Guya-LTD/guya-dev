@@ -16,6 +16,51 @@ build:
       manual:
       - src: '/**/*.conf'
         dest: '.'
+  # Gatekeeper
+  - image: guyaltd/gatekeeper
+    context: gatekeeper
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'gatekeeper/**/*.py'
+        dest: '.'
+      - src: 'tests/**/*.py'
+        dest: '.'
+  # user
+  - image: guyaltd/user
+    context: user
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'user/**/*.py'
+        dest: '.'
+      - src: 'tests/**/*.py'
+        dest: '.'
+  # Mongo indexer
+  - image: guyaltd/mongo-indexer
+    context: mongo-indexer
+    docker:
+      dockerfile: Dockerfile
+    sync:
+      manual:
+      - src: '**/*.toml'
+        dest: '.'
+  # catalog
+  - image: guyaltd/catalog
+    context: catalog
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'catalog/**/*.py'
+        dest: '.'
+      - src: 'tests/**/*.py'
+        dest: '.'
     # shop-web
   - image: guyaltd/shop-web
     context: shop-web
@@ -30,4 +75,8 @@ deploy:
   kustomize:
     paths:
     - guya/api-gateway/base
+    - guya/gatekeeper/overlays/development
+    - guya/user/overlays/development
     - guya/shop-web/overlays/development
+    - guya/mongo-indexer/base
+    - guya/catalog/overlays/development

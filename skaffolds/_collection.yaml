@@ -40,45 +40,35 @@ build:
         dest: '.'
       - src: 'tests/**/*.py'
         dest: '.'
-  # Chipmunk
-  - image: guyaltd/chipmunk
-    context: chipmunk
-    docker:
-      dockerfile: Dockerfile.dev
-      target: development
-      network: host
-    sync:
-      manual:
-      - src: 'app/**/*.php'
-        dest: '.'
-      - src: 'public/**/*.php'
-        dest: '.'
-      - src: 'src/**/*.php'
-        dest: '.'
-      - src: 'templates/**/*.twig'
-        dest: '.'
-  # Mailhog Mail Server
-  - image: guyaltd/mailhog
-    context: mailhog
-    docker:
-      dockerfile: Dockerfile
-
-
-  # admin-panel
-  - image: guyaltd/admin-panel 
-    context: admin-panel
+  # payment
+  - image: guyaltd/payment
+    context: payment
     docker:
       dockerfile: Dockerfile.dev
       target: development
     sync:
       manual:
-      - src: 'src/**/*.js'
+      - src: 'payment/**/*.py'
+        dest: '.'
+      - src: 'tests/**/*.py'
+        dest: '.'
+  # cart
+  - image: guyaltd/cart
+    context: cart
+    docker:
+      dockerfile: Dockerfile.dev
+      target: development
+    sync:
+      manual:
+      - src: 'cart/**/*.py'
+        dest: '.'
+      - src: 'tests/**/*.py'
         dest: '.'
 deploy:
   kustomize:
     paths:
     - guya/api-gateway/base
-    - guya/gatekeeper/overlays/development
     - guya/user/overlays/development
-    - guya/chipmunk/overlays/development
-    - guya/admin-panel/overlays/development
+    - guya/gatekeeper/overlays/development
+    - guya/payment/overlays/development
+    - guya/cart/overlays/development
