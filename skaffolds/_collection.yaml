@@ -40,29 +40,26 @@ build:
         dest: '.'
       - src: 'tests/**/*.py'
         dest: '.'
-  # payment
-  - image: guyaltd/payment
-    context: payment
+  # catalog
+  - image: guyaltd/catalog
+    context: catalog
     docker:
       dockerfile: Dockerfile.dev
       target: development
     sync:
       manual:
-      - src: 'payment/**/*.py'
+      - src: 'catalog/**/*.py'
         dest: '.'
       - src: 'tests/**/*.py'
         dest: '.'
-  # cart
-  - image: guyaltd/cart
-    context: cart
+  # Mongo indexer
+  - image: guyaltd/mongo-indexer
+    context: mongo-indexer
     docker:
-      dockerfile: Dockerfile.dev
-      target: development
+      dockerfile: Dockerfile
     sync:
       manual:
-      - src: 'cart/**/*.py'
-        dest: '.'
-      - src: 'tests/**/*.py'
+      - src: '**/*.toml'
         dest: '.'
 deploy:
   kustomize:
@@ -70,5 +67,5 @@ deploy:
     - guya/api-gateway/base
     - guya/user/overlays/development
     - guya/gatekeeper/overlays/development
-    - guya/payment/overlays/development
-    - guya/cart/overlays/development
+    - guya/mongo-indexer/base
+    - guya/catalog/overlays/development
